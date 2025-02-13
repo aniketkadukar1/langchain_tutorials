@@ -17,7 +17,7 @@ def get_system_time(format : str = "%Y-%m-%d %H:%M:%S"):
     formatted_time = current_time.strftime(format)
     return formatted_time
 
-tools = [search_tool, get_system_time]
+tools = [search_tool, get_system_time] 
 
 agent = initialize_agent(tools=tools, llm=llm, agent="zero-shot-react-description", verbose=True)
 
