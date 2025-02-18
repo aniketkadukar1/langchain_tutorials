@@ -1,3 +1,5 @@
+""" Delete all but the 2 most recent messages """
+
 from pprint import pprint
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -13,18 +15,21 @@ llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
 messages = [AIMessage(f"So you said you were searching ocean mammals?", name="Bot")]
 
 messages.append(HumanMessage(f"Yes, I know about whales. But what others should I learn about?", name="Aniket"))
+messages.append(AIMessage(f"Message 2", name="Aniket"))
+messages.append(HumanMessage(f"Message 2 human response", name="Aniket"))
 
 # for m in messages:
 #     m.pretty_print()
-
 # result = llm.invoke(message)
-
 # print(result)
 
 # Nodes
 def filter_messages(state: MessagesState):
     # Delete all but the 2 most recent messages
-    delete_messages= [RemoveMessage(id=m.id) for m in state["messages"][:-2]]
+    delete_messages = [RemoveMessage(id=m.id) for m in state["messages"][:-2]]
+    print("---debugging---")
+    print(delete_messages)
+    print("---debugging end---")
     return {"messages": delete_messages}
 
 def chat_model_node(state: MessagesState):
