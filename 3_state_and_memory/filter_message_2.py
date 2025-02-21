@@ -1,4 +1,4 @@
-""" Delete all but the 2 most recent messages """
+""" only send last message to the model """
 
 from pprint import pprint
 from langchain_core.messages import AIMessage, HumanMessage
